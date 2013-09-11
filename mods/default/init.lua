@@ -19,3 +19,9 @@ dofile(minetest.get_modpath("default").."/craftitems.lua")
 dofile(minetest.get_modpath("default").."/crafting.lua")
 dofile(minetest.get_modpath("default").."/mapgen.lua")
 dofile(minetest.get_modpath("default").."/player.lua")
+
+-- Aliases
+minetest.register_alias("default:desert_sand", "default:sand")
+minetest.register_alias("default:desert_stone", "default:sandstone")
+minetest.register_alias("default:iron_lump", "default:stone_with_iron")
+minetest.register_alias("default:gold_lump", "default:stone_with_gold")
