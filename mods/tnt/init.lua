@@ -37,8 +37,8 @@ minetest.register_craft({
 	recipe = {
 		{'cobble','cobble','cobble'},
 		{'cobble','uranium:uranium_gem','cobble'},
-		{'cobble','cobble','cobble'}
-	}
+		{'cobble','cobble','cobble'},
+	},
 })
 minetest.register_node("tnt:tnt", {
 	tile_images = {"default_tnt_top.png", "default_tnt_bottom.png",
@@ -162,8 +162,8 @@ minetest.register_entity("tnt:tnt", TNT)
 minetest.register_craft({
 	output = "tnt:tnt",
 	recipe = {
-		{'default:sand','default:sulphur','default:sand'},
-		{'default:sulphur','default:sand','default:sulphur'},
-		{'default:sand','default:sulphur','default:sand'}
-	}
+		{'default:gunpowder','default:sand','default:gunpowder'},
+		{'default:sand','default:gunpowder','default:sand'},
+		{'default:sandgunpowderdefault:sand','default:gunpowder'},
+	},
 })
