@@ -3,34 +3,6 @@
 -- 1 = there is one; 0 = there is none
 -- y always means y+
 
-function redstone_place(itemstack, placer, pointed_thing)
-	--[[local node = minetest.env:get_node(pointed_thing.under)
-	if not minetest.registered_nodes[node.name] or not minetest.registered_nodes[node.name].on_rightclick then
-		local above = pointed_thing.above
-		local under = pointed_thing.under
-		local node = minetest.env:get_node(above)
-		local node_above = minetest.env:get_node(pointed_thing.above)
-		local node_under = minetest.env:get_node(pointed_thing.under)
-		local above_name = node_above.name
-		local under_name = node_under.name
-		if string.find(under_name, "mesecons:wire_[01][01][01][01][01][01]_o[nf]") then
-			print("Tried to place redstone on redstone")
-			return
-		end
-		
-		if not string.find(above_name, "air") then
-			print("Tried to place redstone on air or in a node")
-			return
-		end
-		
-		if string.find(above_name, "air") then
-			minetest.env:add_node(above, {name = "mesecons:wire_00000000_off"})
-		end
-	end
-]]--
-end
-
-
 box_center = {-1/16, -.5, -1/16, 1/16, -.5+1/64, 1/16}
 box_bump1 =  { -2/16, -.5,  -2/16, 2/16, -.5+1/64, 2/16 }
 

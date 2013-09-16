@@ -2,7 +2,7 @@ minetest.register_node("farming:potatoe_1", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:potatoe_item",
 	tiles = {"farming_potatoe_1.png"},
 	selection_box = {
 		type = "fixed",
@@ -18,7 +18,7 @@ minetest.register_node("farming:potatoe_2", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:potatoe_item",
 	tiles = {"farming_potatoe_2.png"},
 	selection_box = {
 		type = "fixed",
@@ -36,11 +36,11 @@ minetest.register_node("farming:potatoe", {
 	drawtype = "plantlike",
 	tiles = {"farming_potatoe_3.png"},
 	drop = {
-		max_items = 6,
+		max_items = 1,
 		items = {
-			{ items = {'farming:potatoe_item'} },
-			{ items = {'farming:potatoe_item'}, rarity = 2 },
-			{ items = {'farming:potatoe_item'}, rarity = 5 }
+			{ items = {'farming:potatoe_item 2'} },
+			{ items = {'farming:potatoe_item 3'}, rarity = 2 },
+			{ items = {'farming:potatoe_item 4'}, rarity = 5 }
 		}
 	},
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},

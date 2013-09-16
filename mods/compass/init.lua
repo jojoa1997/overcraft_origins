@@ -1,79 +1,33 @@
--- default to 0/0/0
-local default_spawn = {x=0, y=0, z=0}
--- default to static spawnpoint (overwrites 0/0/0)
-local default_spawn_settings = minetest.setting_get("static_spawnpoint")
-if (default_spawn_settings) then
-	pos1 = string.find(default_spawn_settings, ",", 0)
-	default_spawn.x = tonumber(string.sub(default_spawn_settings, 0, pos1 - 1))
-	pos2 = string.find(default_spawn_settings, ",", pos1 + 1)
-	default_spawn.y = tonumber(string.sub(default_spawn_settings, pos1 + 1, pos2 - 1))
-	default_spawn.z = tonumber(string.sub(default_spawn_settings, pos2 + 1))
-end
 
-local last_time_spawns_read = "default"
-local pilzadams_spawns = {}
-local sethome_spawns = {}
-function read_spawns()
-	-- read PilzAdams bed-mod positions
-	local pilzadams_file = io.open(minetest.get_worldpath().."/beds_player_spawns", "r")
-	if pilzadams_file then
-		pilzadams_spawns = minetest.deserialize(pilzadams_file:read("*all"))
-		pilzadams_file:close()
-	end
-	-- read sethome-mod positions
-	if minetest.get_modpath('sethome') then
-		local sethome_file = io.open(minetest.get_modpath('sethome')..'/homes', "r")
-		if sethome_file then
-			while true do
-				local x = sethome_file:read("*n")
-				if x == nil then
-					break
-				end
-				local y = sethome_file:read("*n")
-				local z = sethome_file:read("*n")
-				local name = sethome_file:read("*l")
-				sethome_spawns[name:sub(2)] = {x = x, y = y, z = z}
-			end
-			io.close(sethome_file)
-		end
-	end
-end
+local default_spawn_settings = minetest.setting_get("static_spawnpoint")
 
 minetest.register_globalstep(function(dtime)
-	if last_time_spawns_read ~= os.date("%M") then
-		last_time_spawns_read = os.date("%M")
-		read_spawns()
-	end
 	local players  = minetest.get_connected_players()
 	for i,player in ipairs(players) do
-		-- try to get position from PilzAdams bed-mod spawn
-		local spawn = pilzadams_spawns[player:get_player_name()]
-		-- fallback to sethome position
-		if spawn == nil then 
-			spawn = sethome_spawns[player:get_player_name()]
+		local function has_compass(player)
+			for _,stack in ipairs(player:get_inventory():get_list("main")) do
+				if minetest.get_item_group(stack:get_name(), "compass") ~= 0 then
+					return true
+				end
+			end
+			return false
 		end
-		-- fallback to default
-		if spawn == nil then
-			spawn = default_spawn;
-		end
-		pos = player:getpos()
-		dir = player:get_look_yaw()
-		local angle_north = math.deg(math.atan2(spawn.x - pos.x, spawn.z - pos.z))
-		if angle_north < 0 then angle_north = angle_north + 360 end
-		angle_dir = 90 - math.deg(dir)
-		local angle_relative = (angle_north - angle_dir) % 360
-		local compass_image = math.floor((angle_relative/30) + 0.5)%12
+		if has_compass(player) then
+			local spawn = beds_player_spawns[player:get_player_name()] or
+			              minetest.setting_get("static_spawnpoint") or
+			              {x=0,y=0,z=0}
+			pos = player:getpos()
+			dir = player:get_look_yaw()
+			local angle_north = math.deg(math.atan2(spawn.x - pos.x, spawn.z - pos.z))
+			if angle_north < 0 then angle_north = angle_north + 360 end
+			angle_dir = 90 - math.deg(dir)
+			local angle_relative = (angle_north - angle_dir) % 360
+			local compass_image = math.floor((angle_relative/30) + 0.5)%12
 
-		local wielded_item = player:get_wielded_item():get_name()
-		if string.sub(wielded_item, 0, 8) == "compass:" then
-			player:set_wielded_item("compass:"..compass_image)
-		else
-			if player:get_inventory() then 
-				for i,stack in ipairs(player:get_inventory():get_list("main")) do
-					if i<9 and string.sub(stack:get_name(), 0, 8) == "compass:" then
-						player:get_inventory():remove_item("main", stack:get_name())
-						player:get_inventory():add_item("main", "compass:"..compass_image)
-					end
+			for j,stack in ipairs(player:get_inventory():get_list("main")) do
+				if minetest.get_item_group(stack:get_name(), "compass") ~= 0 and
+						minetest.get_item_group(stack:get_name(), "compass")-1 ~= compass_image then
+					player:get_inventory():set_stack("main", j, "compass:"..compass_image)
 				end
 			end
 		end
@@ -105,15 +59,16 @@ for i,img in ipairs(images) do
 		description = "Compass",
 		inventory_image = img,
 		wield_image = img,
-		groups = {not_in_creative_inventory=inv}
+		stack_max = 1,
+		groups = {not_in_creative_inventory=inv,compass=i}
 	})
 end
 
 minetest.register_craft({
 	output = 'compass:1',
 	recipe = {
-		{'', 'default:steel_ingot', ''},
-		{'default:steel_ingot', 'default:redstone_dust', 'default:steel_ingot'},
-		{'', 'default:steel_ingot', ''}
+		{'', 'default:iron_ingot', ''},
+		{'default:iron_ingot', 'default_redstone_dust', 'default:iron_ingot'},
+		{'', 'default:iron_ingot', ''}
 	}
 })

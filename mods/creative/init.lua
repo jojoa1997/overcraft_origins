@@ -1,5 +1,5 @@
 -- minetest/creative/init.lua
-
+--[[
 creative_inventory = {}
 creative_inventory.creative_inventory_size = 0
 
@@ -71,9 +71,9 @@ trash:set_size("main", 1)
 creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
 	pagenum = math.floor(pagenum)
 	local pagemax = math.floor((creative_inventory.creative_inventory_size-1) / (6*4) + 1)
-	player:set_inventory_formspec("size[13,7.5]"..
+	player:set_inventory_formspec("size[14,7.5]"..
 			--"image[6,0.6;1,2;player.png]"..
-			"list[current_player;main;5,3.5;8,4;]"..
+			"list[current_player;main;5,3.5;9,4;]"..
 			"list[current_player;craft;8,0;3,3;]"..
 			"list[current_player;craftpreview;12,1;1,1;]"..
 			"list[detached:creative;main;0.3,0.5;4,6;"..tostring(start_i).."]"..
@@ -82,6 +82,12 @@ creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
 			"button[2.7,6.5;1.6,1;creative_next;>>]"..
 			"label[5,1.5;Trash:]"..
 			"list[detached:creative_trash;main;5,2;1,1;]")
+	player:get_inventory():set_width("craft", 3)
+	player:get_inventory():set_size("craft", 9)
+	player:get_inventory():set_size("main", 9*4)
+	if player.hud_set_hotbar_itemcount then
+		minetest.after(0, player.hud_set_hotbar_itemcount, player, 9)
+	end
 end
 minetest.register_on_joinplayer(function(player)
 	-- If in creative mode, modify player's inventory forms
@@ -123,6 +129,14 @@ end)
 
 if minetest.setting_getbool("creative_mode") then
 	
+	local function get_list(num)
+		local table = {times={}, uses=0}
+		for i=1,num do
+			table.times[i] = 0
+		end
+		return table
+	end
+	
 	minetest.register_item(":", {
 		type = "none",
 		wield_image = "wieldhand.png",
@@ -131,11 +145,11 @@ if minetest.setting_getbool("creative_mode") then
 			full_punch_interval = 0.5,
 			max_drop_level = 3,
 			groupcaps = {
-				crumbly = {times={[1]=0.5, [2]=0.5, [3]=0.5}, uses=0, maxlevel=3},
-				cracky = {times={[1]=0.5, [2]=0.5, [3]=0.5}, uses=0, maxlevel=3},
-				snappy = {times={[1]=0.5, [2]=0.5, [3]=0.5}, uses=0, maxlevel=3},
-				choppy = {times={[1]=0.5, [2]=0.5, [3]=0.5}, uses=0, maxlevel=3},
-				oddly_breakable_by_hand = {times={[1]=0.5, [2]=0.5, [3]=0.5}, uses=0, maxlevel=3},
+				crumbly = get_list(8),
+				cracky = get_list(20),
+				snappy = get_list(2),
+				choppy = get_list(9),
+				dig = get_list(7),
 			},
 			damage_groups = {fleshy = 10},
 		}
@@ -161,3 +175,4 @@ if minetest.setting_getbool("creative_mode") then
 	end
 	
 end
+]]

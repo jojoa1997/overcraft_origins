@@ -1,20 +1,16 @@
 minetest.register_tool("mapp:map", {
 	description = "map",
 	inventory_image = "map_block.png",
+	stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 	map_handler(itemstack,user,pointed_thing)
 	end,
 })
-
-minetest.register_craft({
-	output = 'mapp:map',
-	recipe = {
-		{"default:paper", "default:paper"},
-		{"default:paper", "default:paper"},
-	}
-})
-
 function map_handler (itemstack, user, pointed_thing)
+		--Bechmark variables.
+		local clock = os.clock
+        local start = clock()
+
 		local pos = user:getpos()
 		local player_name=user:get_player_name()
 		local mapar = {}
@@ -31,8 +27,6 @@ function map_handler (itemstack, user, pointed_thing)
            -- Find rotation and texture based on yaw.
            yaw = math.deg(yaw)
            yaw = math.fmod (yaw, 360)
-           if yaw<0 then yaw = 360 + yaw end
-           if yaw>360 then yaw = yaw - 360 end           
            if yaw < 90 then
               rotate = 90
            elseif yaw < 180 then
@@ -44,17 +38,16 @@ function map_handler (itemstack, user, pointed_thing)
            end
            yaw = math.fmod(yaw, 90)
            yaw = math.floor(yaw / 10) * 10
-           
         end
 
 		--Localise some global minetest variables for speed.
 		local env = minetest.env
 		local registered_nodes = minetest.registered_nodes
 
-		for i = -17,17,1 do
-			mapar[i+17] = {}
-			for j = -17,17,1 do
-				mapar[i+17][j+17] = {}
+		for i = -35,35,1 do
+			mapar[i+35] = {}
+			for j = -35,35,1 do
+				mapar[i+35][j+35] = {}
 				po.x, po.y, po.z = pos.x+i, pos.y, pos.z+j
 				local no = env:get_node(po)
 				local k=po.y
@@ -85,8 +78,8 @@ function map_handler (itemstack, user, pointed_thing)
 				if type(tile)=="table" then
 				  tile=tile["name"]
 				end
-				mapar[i+17][j+17].y = k
-				mapar[i+17][j+17].im = tile
+				mapar[i+35][j+35].y = k
+				mapar[i+35][j+35].im = tile
 			end
 		end
 
@@ -96,28 +89,29 @@ function map_handler (itemstack, user, pointed_thing)
 	pp = #p
 
 	pp = pp + 1
-	p[pp] = "size[5.2,5]"..
-			"background[-0.75,-0.75;6.8,6.8;map_block_bg.png]"
+	p[pp] = "size[8.2,8]"..
+			"background[-1,-1;9.8,9.8;map_block_bg.png]"
 
-	for i=1,32,1 do
-		for j=1,32,1 do
+	for i=1,50,1 do
+		for j=1,50,1 do
 			if mapar[i][j].y ~= mapar[i][j+1].y then mapar[i][j].im = mapar[i][j].im .. "^1black_blockt.png" end
 			if mapar[i][j].y ~= mapar[i][j-1].y then mapar[i][j].im = mapar[i][j].im .. "^1black_blockb.png" end
 			if mapar[i][j].y ~= mapar[i-1][j].y then mapar[i][j].im = mapar[i][j].im .. "^1black_blockl.png" end
 			if mapar[i][j].y ~= mapar[i+1][j].y then mapar[i][j].im = mapar[i][j].im .. "^1black_blockr.png" end
 			pp = pp + 1
-			p[pp] = "image[".. 0.15*(i) ..",".. 0.15*(32-j)+0.1 ..";0.2,0.2;" .. mapar[i][j].im .. "]"
+			p[pp] = "image[".. 0.15*(i) ..",".. 0.15*(50-j)+0.1 ..";0.2,0.2;" .. mapar[i][j].im .. "]"
 		end
 	end
 
 	pp = pp + 1
 	if rotate ~= 0 then
-		p[pp] = "image[".. 0.15*(16)+0.075 ..",".. 0.15*(16)-0.085 ..";0.4,0.4;d" .. yaw .. ".png^[transformFYR".. rotate .."]"
+		p[pp] = "image[".. 0.15*(25)+0.075 ..",".. 0.15*(25)-0.085 ..";0.4,0.4;d" .. yaw .. ".png^[transformFYR".. rotate .."]"
 	else
-		p[pp] = "image[".. 0.15*(16)+0.075 ..",".. 0.15*(16)-0.085 ..";0.4,0.4;d" .. yaw .. ".png^[transformFY]"
+		p[pp] = "image[".. 0.15*(25)+0.075 ..",".. 0.15*(25)-0.085 ..";0.4,0.4;d" .. yaw .. ".png^[transformFY]"
 	end
-	
+
 	map = table.concat(p, "\n")
 
 	minetest.show_formspec(player_name, "mapp:map", map)
+	print("[Mapp] Map generated in: ".. clock() - start.." seconds.")
 end

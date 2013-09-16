@@ -25,7 +25,7 @@ end
 minetest.register_tool("farming:hoe_wood", {
 	description = "Wood Hoe",
 	inventory_image = "farming_hoe_wood.png",
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 0) then
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:add_wear(65535/30)
@@ -47,7 +47,7 @@ minetest.register_craft({
 minetest.register_tool("farming:hoe_stone", {
 	description = "Stone Hoe",
 	inventory_image = "farming_hoe_stone.png",
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 5) then
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:add_wear(65535/50)
@@ -69,7 +69,7 @@ minetest.register_craft({
 minetest.register_tool("farming:hoe_steel", {
 	description = "Steel Hoe",
 	inventory_image = "farming_hoe_steel.png",
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 10) then
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:add_wear(65535/80)
@@ -91,7 +91,7 @@ minetest.register_craft({
 minetest.register_tool("farming:hoe_gold", {
 	description = "Gold Hoe",
 	inventory_image = "farming_hoe_gold.png",
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 7) then
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:add_wear(65535/60)
@@ -113,7 +113,7 @@ minetest.register_craft({
 minetest.register_tool("farming:hoe_diamond", {
 	description = "Diamond Hoe",
 	inventory_image = "farming_hoe_diamond.png",
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 15) then
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:add_wear(65535/120)

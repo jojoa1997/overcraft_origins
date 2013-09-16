@@ -504,18 +504,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 local function replace(old, new, min, max)
-	for i=1,8 do
-		minetest.register_ore({
-			ore_type       = "scatter",
-			ore            = new,
-			wherein        = old,
-			clust_scarcity = 1,
-			clust_num_ores = 1,
-			clust_size     = 1,
-			height_min     = min,
-			height_max     = max,
-		})
-	end
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = new,
+		wherein        = old,
+		clust_scarcity = 1,
+		clust_num_ores = 1,
+		clust_size     = 1,
+		height_min     = min,
+		height_max     = max,
+	})
 end
 replace("air", "default:bedrock", -90, -80)
 replace("air", "default:lava_source", -80, -70)

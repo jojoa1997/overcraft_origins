@@ -130,8 +130,22 @@ end
 function set_fire(pointed_thing)
 		local n = minetest.env:get_node(pointed_thing.above)
 		if n.name ~= ""  and n.name == "air" then
-			minetest.env:set_node(pointed_thing.above, {name="fire:fire"})
+			minetest.env:add_node(pointed_thing.above, {name="fire:basic_flame"})
 		end
+end
+
+--
+-- Fire Particles
+--
+
+function add_fire(pos)
+	local null = {x=0, y=0, z=0}
+	pos.y = pos.y+0.19
+	minetest.add_particle(pos, null, null, 1.1,
+   					1.5, true, "default_fire_particle"..tostring(math.random(1,2)) ..".png")
+	pos.y = pos.y +0.01
+	minetest.add_particle(pos, null, null, 0.8,
+   					1.5, true, "default_fire_particle"..tostring(math.random(1,2)) ..".png")
 end
 
 --
@@ -178,7 +192,7 @@ function generate_tree(pos, trunk, leaves)
 	node = {name = "default:tree"}
 	for dy=0,4 do
 		pos.y = pos.y+dy
-		minetest.env:set_node(pos, node)
+		minetest.env:add_node(pos, node)
 		pos.y = pos.y-dy
 	end
 
@@ -197,39 +211,39 @@ function generate_tree(pos, trunk, leaves)
 
 				if dx == 0 and dz == 0 and dy==3 then
 					if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-						minetest.env:set_node(pos, node)
+						minetest.env:add_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.env:add_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.env:add_node(pos, air_leave())
 						end
 					end
 				elseif dx == 0 and dz == 0 and dy==4 then
 					if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-						minetest.env:set_node(pos, node)
+						minetest.env:add_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.env:add_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.env:add_node(pos, air_leave())
 						end
 					end
 				elseif math.abs(dx) ~= 2 and math.abs(dz) ~= 2 then
 					if minetest.env:get_node(pos).name == "air" then
-						minetest.env:set_node(pos, node)
+						minetest.env:add_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.env:add_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.env:add_node(pos, air_leave())
 						end
 					end
 				else
 					if math.abs(dx) ~= 2 or math.abs(dz) ~= 2 then
 						if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-							minetest.env:set_node(pos, node)
+							minetest.env:add_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.env:add_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.env:add_node(pos, air_leave())
 						end
 						end
 					end
@@ -253,13 +267,9 @@ minetest.after(0.5, function()
 	plant_tab[5] = "default:grass_5"
 
 if minetest.get_modpath("flowers") ~= nil then
-	rnd_max = 11
-	plant_tab[6] = "flowers:dandelion_white"
-	plant_tab[7] = "flowers:dandelion_yellow"
-	plant_tab[8] = "flowers:geranium"
-	plant_tab[9] = "flowers:rose"
-	plant_tab[10] = "flowers:tulip"
-	plant_tab[11] = "flowers:viola"
+	rnd_max = 7
+	plant_tab[6] = "flowers:dandelion_yellow"
+	plant_tab[7] = "flowers:rose"
 end
 
 end)
@@ -270,33 +280,40 @@ function duengen(pointed_thing)
 	if n.name == "" then return end
 	local stage = ""
 	if n.name == "default:sapling" then
-		minetest.env:set_node(pos, {name="air"})
+		minetest.env:add_node(pos, {name="air"})
 		generate_tree(pos, "default:tree", "default:leaves")
 	elseif string.find(n.name, "farming:wheat_") ~= nil then
 		stage = string.sub(n.name, 15)
 		if stage == "3" then
-			minetest.env:set_node(pos, {name="farming:wheat"})
+			minetest.env:add_node(pos, {name="farming:wheat"})
 		elseif math.random(1,5) < 3 then
-			minetest.env:set_node(pos, {name="farming:wheat"})
+			minetest.env:add_node(pos, {name="farming:wheat"})
 		else
-			minetest.env:set_node(pos, {name="farming:wheat_"..math.random(2,3)})
+			minetest.env:add_node(pos, {name="farming:wheat_"..math.random(2,3)})
 		end
-	elseif string.find(n.name, "farming:cotton_") ~= nil then
+	elseif string.find(n.name, "farming:potato_") ~= nil then
 		stage = tonumber(string.sub(n.name, 16))
 		if stage == 1 then
-			minetest.env:set_node(pos, {name="farming:cotton_"..math.random(stage,2)})
+			minetest.env:add_node(pos, {name="farming:potato_"..math.random(stage,2)})
 		else
-			minetest.env:set_node(pos, {name="farming:cotton"})
+			minetest.env:add_node(pos, {name="farming:potato"})
+		end
+	elseif string.find(n.name, "farming:carrot_") ~= nil then
+		stage = tonumber(string.sub(n.name, 16))
+		if stage == 1 then
+			minetest.env:add_node(pos, {name="farming:carrot_"..math.random(stage,2)})
+		else
+			minetest.env:add_node(pos, {name="farming:carrot"})
 		end
 	elseif string.find(n.name, "farming:pumpkin_") ~= nil then
 		stage = tonumber(string.sub(n.name, 17))
 		if stage == 1 then
-			minetest.env:set_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
+			minetest.env:add_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
 		else
-			minetest.env:set_node(pos, {name="farming:pumpkin"})
+			minetest.env:add_node(pos, {name="farming:pumpkin"})
 		end
 	elseif n.name ~= ""  and n.name == "default:junglesapling" then
-		minetest.env:set_node(pos, {name="air"})
+		minetest.env:add_node(pos, {name="air"})
 		generate_tree(pos, "default:jungletree", "default:jungleleaves")
 	elseif n.name ~="" and n.name == "default:reeds" then
 		grow_reeds(pos)
@@ -312,9 +329,9 @@ function duengen(pointed_thing)
 
 				if n.name ~= ""  and n.name == "air" and n2.name == "default:dirt_with_grass" then
 					if math.random(0,5) > 3 then
-						minetest.env:set_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
+						minetest.env:add_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
 					else
-						minetest.env:set_node(pos, {name=plant_tab[math.random(0, 5)]})
+						minetest.env:add_node(pos, {name=plant_tab[math.random(0, 5)]})
 					end
 					
 					

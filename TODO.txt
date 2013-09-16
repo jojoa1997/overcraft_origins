@@ -1,1 +1,2 @@
 fix inventory textures and have furnaces use their inventory texture too.
+fix the hand_* stuff and get it to work(help needed)

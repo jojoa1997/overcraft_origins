@@ -23,11 +23,11 @@ minetest.register_abm({
 })
 
 -- ========= EXPERIMENTAL =========
--- This will turn soil to dirt when walking over it
+--[[ This will turn soil to dirt when walking over it
 minetest.register_abm({
 	nodenames = {"farming:soil", "farming:soil_wet"},
-	interval = 2,
-	chance = 5,
+	interval = 20,
+	chance = 100,
 	action = function(pos, node)
 		pos.y = pos.y+1
 		if #(minetest.env:get_objects_inside_radius(pos, 0.8)) > 0 then
@@ -36,4 +36,4 @@ minetest.register_abm({
 			minetest.env:set_node(pos, node)
 		end
 	end,
-})
+})]]

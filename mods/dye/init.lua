@@ -63,21 +63,21 @@ local dyelocal = {}
 
 -- This collection of colors is partly a historic thing, partly something else.
 dyelocal.dyes = {
-	{"white",      "White dye",     {dye=1, basecolor_white=1,   excolor_white=1,     unicolor_white=1}},
-	{"grey",       "Grey dye",      {dye=1, basecolor_grey=1,    excolor_grey=1,      unicolor_grey=1}},
-	{"dark_grey",  "Dark grey dye", {dye=1, basecolor_grey=1,    excolor_darkgrey=1,  unicolor_darkgrey=1}},
-	{"black",      "Black dye",     {dye=1, basecolor_black=1,   excolor_black=1,     unicolor_black=1}},
-	{"violet",     "Violet dye",    {dye=1, basecolor_magenta=1, excolor_violet=1,    unicolor_violet=1}},
-	{"blue",       "Blue dye",      {dye=1, basecolor_blue=1,    excolor_blue=1,      unicolor_blue=1}},
-	{"cyan",       "Cyan dye",      {dye=1, basecolor_cyan=1,    excolor_cyan=1,      unicolor_cyan=1}},
-	{"dark_green", "Dark green dye",{dye=1, basecolor_green=1,   excolor_green=1,     unicolor_dark_green=1}},
-	{"green",      "Green dye",     {dye=1, basecolor_green=1,   excolor_green=1,     unicolor_green=1}},
-	{"yellow",     "Yellow dye",    {dye=1, basecolor_yellow=1,  excolor_yellow=1,    unicolor_yellow=1}},
-	{"brown",      "Brown dye",     {dye=1, basecolor_yellow=1,  excolor_orange=1,    unicolor_dark_orange=1}},
-	{"orange",     "Orange dye",    {dye=1, basecolor_orange=1,  excolor_orange=1,    unicolor_orange=1}},
-	{"red",        "Red dye",       {dye=1, basecolor_red=1,     excolor_red=1,       unicolor_red=1}},
-	{"magenta",    "Magenta dye",   {dye=1, basecolor_magenta=1, excolor_red_violet=1,unicolor_red_violet=1}},
-	{"pink",       "Pink dye",      {dye=1, basecolor_red=1,     excolor_red=1,       unicolor_light_red=1}},
+	{"white",      "Bone Meal",     {dye=1, basecolor_white=1,   excolor_white=1,     unicolor_white=1}},
+	{"grey",       "Light Grey Dye",      {dye=1, basecolor_grey=1,    excolor_grey=1,      unicolor_grey=1}},
+	{"dark_grey",  "Grey Dye", {dye=1, basecolor_grey=1,    excolor_darkgrey=1,  unicolor_darkgrey=1}},
+	{"black",      "Ink Sac",     {dye=1, basecolor_black=1,   excolor_black=1,     unicolor_black=1}},
+	{"violet",     "Violet Dye",    {dye=1, basecolor_magenta=1, excolor_violet=1,    unicolor_violet=1}},
+	{"blue",       "Lapis Lazuli",      {dye=1, basecolor_blue=1,    excolor_blue=1,      unicolor_blue=1}},
+	{"cyan",       "Cyan Dye",      {dye=1, basecolor_cyan=1,    excolor_cyan=1,      unicolor_cyan=1}},
+	{"dark_green", "Cactus Green",{dye=1, basecolor_green=1,   excolor_green=1,     unicolor_dark_green=1}},
+	{"green",      "Lime Dye",     {dye=1, basecolor_green=1,   excolor_green=1,     unicolor_green=1}},
+	{"yellow",     "Dandelion Yellow",    {dye=1, basecolor_yellow=1,  excolor_yellow=1,    unicolor_yellow=1}},
+	{"brown",      "Cocoa Beans",     {dye=1, basecolor_yellow=1,  excolor_orange=1,    unicolor_dark_orange=1}},
+	{"orange",     "Orange Dye",    {dye=1, basecolor_orange=1,  excolor_orange=1,    unicolor_orange=1}},
+	{"red",        "Rose Red",       {dye=1, basecolor_red=1,     excolor_red=1,       unicolor_red=1}},
+	{"magenta",    "Magenta Dye",   {dye=1, basecolor_magenta=1, excolor_red_violet=1,unicolor_red_violet=1}},
+	{"pink",       "Pink Dye",      {dye=1, basecolor_red=1,     excolor_red=1,       unicolor_light_red=1}},
 }
 
 -- Define items
@@ -90,7 +90,8 @@ for _, row in ipairs(dyelocal.dyes) do
 	minetest.register_craftitem(item_name, {
 		inventory_image = item_image,
 		description = description,
-		groups = groups
+		groups = groups,
+		stack_max = 64,
 	})
 	minetest.register_craft({
 		type = "shapeless",
@@ -136,4 +137,12 @@ end
 -- Hide dyelocal
 dyelocal = nil
 
--- EOF
+minetest.register_craftitem("dye:white", {
+	inventory_image = "dye_white.png",
+	description = "Bone Meal",
+	stack_max = 64,
+	groups = {dye=1, basecolor_white=1,   excolor_white=1,     unicolor_white=1},
+	on_place = function(itemstack, user, pointed_thing) 
+		duengen(pointed_thing)
+	end,
+})

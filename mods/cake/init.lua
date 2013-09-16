@@ -35,6 +35,7 @@ minetest.register_node("cake:cake", {
 			fixed = slice_6
 		},
 	is_ground_content = true,
+	stack_max = 1,
 	groups = {crumbly=3,falling_node=1},
 	drop = '',
 	--legacy_mineral = true,

@@ -288,7 +288,7 @@ minetest.register_tool("default:flint_and_steel", {
 		}
 	},
 	--groups = {hot=3, igniter=1, not_in_creative_inventory=1},
-	on_place = function(itemstack, user, pointed_thing)
+	on_use = function(itemstack, user, pointed_thing)
 		if pointed_thing.type == "node" then
 			set_fire(pointed_thing)
 			itemstack:add_wear(66000/65) -- 65 uses
@@ -304,7 +304,7 @@ minetest.register_tool("default:pole", {
     inventory_image = "default_tool_fishing_pole.png",
     stack_max = 1,
     liquids_pointable = true,
-	on_place = function (itemstack, user, pointed_thing)
+	on_use = function (itemstack, user, pointed_thing)
 		if pointed_thing and pointed_thing.under then
 			local node = minetest.env:get_node(pointed_thing.under)
 			if string.find(node.name, "default:water") then
@@ -333,8 +333,9 @@ minetest.register_tool("default:shears", {
 	        full_punch_interval = 0.5,
 	        max_drop_level=1,
 	        groupcaps={
-				leaves={times={[1]=0.2,[2]=0.2,[3]=0.2}, uses=283, maxlevel=1},
-				wool={times={[1]=0.2,[2]=0.2,[3]=0.2}, uses=283, maxlevel=1}
+				leaves={times={[1]=0,[2]=0,[3]=0}, uses=283, maxlevel=1},
+				wool={times={[1]=0.2,[2]=0.2,[3]=0.2}, uses=283, maxlevel=1},
+				snappy={times={[1]=0.2,[2]=0.2,[3]=0.2}, uses=283, maxlevel=1},
         	}
     }
 })

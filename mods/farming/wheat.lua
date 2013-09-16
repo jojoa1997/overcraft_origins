@@ -17,7 +17,7 @@ minetest.register_node("farming:wheat_1", {
 	sunlight_propagates = true,
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:wheat_seed",
 	tiles = {"farming_wheat_1.png"},
 	selection_box = {
 		type = "fixed",
@@ -33,7 +33,7 @@ minetest.register_node("farming:wheat_2", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:wheat_seed",
 	tiles = {"farming_wheat_2.png"},
 	selection_box = {
 		type = "fixed",
@@ -49,7 +49,7 @@ minetest.register_node("farming:wheat_3", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:wheat_seed",
 	tiles = {"farming_wheat_3.png"},
 	selection_box = {
 		type = "fixed",

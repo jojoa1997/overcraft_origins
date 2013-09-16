@@ -257,6 +257,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:pole",
+	recipe = {
+		{'', '', 'default:stick'},
+		{'', 'default:stick', 'default:string'},
+		{'default:stick', '', 'default:string'},
+	}
+})
+
+minetest.register_craft({
 	output = 'default:rail 15',
 	recipe = {
 		{'default:steel_ingot', '', 'default:steel_ingot'},
@@ -395,7 +404,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "default:sulphur",
+	output = "default:gunpowder",
 	recipe = {
 		'default:sand',
 		'default:gravel',
@@ -471,6 +480,16 @@ minetest.register_craft({
 	recipe = {
 		{'default:redstoneblock'},
 	}
+})
+
+minetest.register_craft({
+	output = 'default:redstone_dust',
+	recipe = {{"mesecons:wire_00000000_off"}},
+})
+
+minetest.register_craft({
+	output = "mesecons:wire_00000000_off",
+	recipe = {{'default:redstone_dust'}},
 })
 
 
@@ -701,4 +720,13 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "default:grass_1",
 	burntime = 2,
+})
+
+
+--
+--Temporary
+--
+minetest.register_craft({
+	output = "default:string",
+	recipe = {{"default:paper", "default:paper"}},
 })

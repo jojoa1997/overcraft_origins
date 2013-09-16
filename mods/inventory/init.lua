@@ -64,7 +64,7 @@ trash:set_size("main", 1)
 
 creative_list = {}
 for name,def in pairs(minetest.registered_items) do
-		if (not def.groups.not_in_inventory or def.groups.not_in_inventory == 0)
+		if (not def.groups.not_in_creative_inventory or def.groups.not_in_creative_inventory == 0)
 				and def.description and def.description ~= "" then
 			table.insert(creative_list, name)
 		end
@@ -193,17 +193,23 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	inventory.set_player_formspec(player, start_i, start_i / (9*4) + 1)
 end)
 
+if minetest.setting_getbool("creative_mode")==false then
+	local gm_priv = true
+elseif minetest.setting_getbool("creative_mode")==true then
+	local gm_priv = false
+end
+
 minetest.register_chatcommand('gamemode',{
-	params = "1 | 0",
+	params = "1, c | 0, s",
 	description = 'Switch your gamemode',
-	privs = {gamemode = true},
+	privs = {gamemode = gm_priv},
 	func = function(name, param)
-		if param == "1" then
+		if param == "1" or param == "c" then
 			playerdata[name]['gamemode'] = "Creative"
 			save_player_data()
 			minetest.chat_send_player(name, 'Your gamemode is now: '..playerdata[name]['gamemode'])
 			updategamemode(name)
-		elseif param == "0" then
+		elseif param == "0" or param == "s" then
 			playerdata[name]['gamemode'] = "Survival"
 			save_player_data()
 			minetest.chat_send_player(name, 'Your gamemode is now: '..playerdata[name]['gamemode'])

@@ -2,7 +2,7 @@ minetest.register_node("farming:carrot_1", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:carrot_item",
 	tiles = {"farming_carrot_1.png"},
 	selection_box = {
 		type = "fixed",
@@ -18,7 +18,7 @@ minetest.register_node("farming:carrot_2", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:carrot_item",
 	tiles = {"farming_carrot_2.png"},
 	selection_box = {
 		type = "fixed",
@@ -34,7 +34,7 @@ minetest.register_node("farming:carrot_3", {
 	paramtype = "light",
 	walkable = false,
 	drawtype = "plantlike",
-	drop = "",
+	drop = "farming:carrot_item",
 	tiles = {"farming_carrot_3.png"},
 	selection_box = {
 		type = "fixed",
@@ -52,11 +52,11 @@ minetest.register_node("farming:carrot", {
 	drawtype = "plantlike",
 	tiles = {"farming_carrot_4.png"},
 	drop = {
-		max_items = 6,
+		max_items = 1,
 		items = {
-			{ items = {'farming:carrot_item'} },
-			{ items = {'farming:carrot_item'}, rarity = 2 },
-			{ items = {'farming:carrot_item'}, rarity = 5 }
+			{ items = {'farming:carrot_item 2'} },
+			{ items = {'farming:carrot_item 3'}, rarity = 2 },
+			{ items = {'farming:carrot_item 4'}, rarity = 5 }
 		}
 	},
 	groups = {snappy=3, flammable=2, not_in_creative_inventory=1},

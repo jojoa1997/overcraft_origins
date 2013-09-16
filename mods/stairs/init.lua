@@ -232,7 +232,7 @@ stairs.register_stair_and_slab("brick", "default:brick",
 
 stairs.register_stair_and_slab("sandstone", "default:sandstone",
 		{crumbly=2,cracky=2},
-		{"default_sandstone.png"},
+		{"default_sandstone_top.png", "default_sandstone_bottom.png", "default_sandstone_normal.png"},
 		"Sandstone Stair",
 		"Sandstone Slab",
 		default.node_sound_stone_defaults())
