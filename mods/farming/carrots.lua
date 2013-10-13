@@ -81,7 +81,7 @@ minetest.register_craftitem("farming:carrot_item", {
 minetest.register_craftitem("farming:carrot_item_gold", {
 	description = "Golden Carrot",
 	inventory_image = "farming_carrot_gold.png",
-	on_use = minetest.item_eat(6),
+	on_use = minetest.item_eat(3),
 })
 
 minetest.register_craft({

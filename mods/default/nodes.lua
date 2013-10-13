@@ -17,7 +17,7 @@ minetest.register_node("default:stone", {
 
 minetest.register_node("default:stone_with_coal", {
 	description = "Coal Ore",
-	tiles = {"default_mineral_coal.png"},
+	tiles = {"default_stone.png^default_mineral_coal.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=3},
@@ -27,7 +27,7 @@ minetest.register_node("default:stone_with_coal", {
 
 minetest.register_node("default:stone_with_iron", {
 	description = "Iron Ore",
-	tiles = {"default_mineral_iron.png"},
+	tiles = {"default_stone.png^default_mineral_iron.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=2},
@@ -38,7 +38,7 @@ minetest.register_node("default:stone_with_iron", {
 
 minetest.register_node("default:stone_with_gold", {
 	description = "Gold Ore",
-	tiles = {"default_mineral_gold.png"},
+	tiles = {"default_stone.png^default_mineral_gold.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=2},
@@ -49,7 +49,7 @@ minetest.register_node("default:stone_with_gold", {
 
 minetest.register_node("default:stone_with_redstone", {
 	description = "Redstone Ore",
-	tiles = {"default_mineral_redstone.png"},
+	tiles = {"default_stone.png^default_mineral_redstone.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=2},
@@ -59,7 +59,7 @@ minetest.register_node("default:stone_with_redstone", {
 
 minetest.register_node("default:stone_with_lapis", {
 	description = "Lapis Lazuli Ore",
-	tiles = {"default_mineral_lapis.png"},
+	tiles = {"default_stone.png^default_mineral_lapis.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=2},
@@ -78,7 +78,7 @@ minetest.register_node("default:stone_with_lapis", {
 
 minetest.register_node("default:stone_with_emerald", {
 	description = "Emerald Ore",
-	tiles = {"default_mineral_emerald.png"},
+	tiles = {"default_stone.png^default_mineral_emerald.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=2},
@@ -94,7 +94,7 @@ minetest.register_node("default:stone_with_emerald", {
 
 minetest.register_node("default:stone_with_diamond", {
 	description = "Diamonds in Stone",
-	tiles = {"default_mineral_diamond.png"},
+	tiles = {"default_stone.png^default_mineral_diamond.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {cracky=1},

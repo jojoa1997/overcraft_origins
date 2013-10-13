@@ -1,8 +1,11 @@
 -- Minetest 0.4 mod: default
 -- See README.txt for licensing and other information.
 
+flower_tmp={}
+
 -- Map Generation
 dofile(minetest.get_modpath("flowers").."/mapgen.lua")
+dofile(minetest.get_modpath("flowers").."/func.lua")
 
 -- Aliases for original flowers mod
 minetest.register_alias("flowers:flower_rose", "flowers:rose")
@@ -87,5 +90,55 @@ minetest.register_abm({
 				minetest.set_node(seedling, {name=node.name})
 			end
 		end
+	end,
+})
+
+--
+-- Flower Pot
+--
+
+-- Note: The flowerpot in minecraft lets you put anything in there.
+
+minetest.register_node("flowers:pot",{
+	description = "Flower Pot",
+	drawtype = "nodebox",
+	node_box = { type = "fixed", fixed = {
+		{-0.125000,-0.125000,-0.187500,-0.187500,-0.500000,0.187500}, --Wall 1
+		{0.187500,-0.125000,-0.125000,0.125000,-0.500000,0.187500}, --Wall 2
+		{-0.187500,-0.125000,-0.125000,0.187500,-0.500000,-0.187500}, --Wall 3
+		{0.187500,-0.125000,0.125000,-0.187500,-0.500000,0.187500}, --Wall 4
+		{-0.125000,-0.500000,-0.125000,0.125000,-0.250000,0.125000}, --Dirt 5
+	}},
+	--selection_box = { type = "fixed", fixed = {-7/16, -0.5, -7/16, 7/16, 12/16, 7/16} },
+	tiles = {"flowers_pot_top.png", "flowers_pot_bottom.png", "flowers_pot_top.png"},
+	inventory_image="flowers_pot_inventory.png",
+	paramtype = "light",
+	groups = {snappy=3,attached_node=1},
+	sounds = default.node_sound_defaults(),
+	after_place_node = function(pos, placer, itemstack)
+		local meta = minetest.env:get_meta(pos)
+		meta:set_string("owner",placer:get_player_name())
+		meta:set_string("infotext","Flower Pot (owned by "..placer:get_player_name()..")")
+	end,
+	on_rightclick = function(pos, node, clicker, itemstack)
+		if not itemstack then return end
+		local meta = minetest.env:get_meta(pos)
+		if clicker:get_player_name() == meta:get_string("owner") then
+			flower_pot_drop_item(pos,node)
+			local s = itemstack:take_item()
+			meta:set_string("item",s:to_string())
+			flower_pot_update_item(pos,node)
+		end
+		return itemstack
+	end,
+	on_punch = function(pos,node,puncher)
+		local meta = minetest.env:get_meta(pos)
+		if puncher:get_player_name() == meta:get_string("owner") then
+			flower_pot_drop_item(pos,node)
+		end
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.env:get_meta(pos)
+		return player:get_player_name() == meta:get_string("owner")
 	end,
 })

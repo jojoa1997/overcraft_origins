@@ -68,6 +68,12 @@ minetest.register_craftitem("farming:potatoe_item_baked", {
 	on_use = minetest.item_eat(8),
 })
 
+minetest.register_craftitem("farming:pottoe_item_poison", {
+	description = "Poisonous Potatoe",
+	inventory_image = "farming_potatoe_poison.png",
+	on_use = minetest.item_eat(1),
+})
+
 minetest.register_craft({
 	type = "cooking",
 	output = "farming:potatoe_item_baked",
