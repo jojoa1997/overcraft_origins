@@ -31,18 +31,37 @@ for _, row in ipairs(wool.dyes) do
 	local desc = row[2]
 	local craft_color_group = row[3]
 	-- Node Definition
-	minetest.register_node("wool:"..name, {
-		description = desc.." Wool",
-		tiles = {"wool_"..name..".png"},
-		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1},
-		sounds = default.node_sound_defaults(),
-	})
+		minetest.register_node("wool:"..name, {
+			description = desc.." Wool",
+			tiles = {"wool_"..name..".png"},
+			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,wool=1},
+			sounds = default.node_sound_defaults(),
+		})
+		minetest.register_node("wool:"..name.."_carpet", {
+			description = desc.." Carpet",
+			tiles = {"wool_"..name..".png"},
+			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,carpet=1},
+			sounds = default.node_sound_defaults(),
+			paramtype = "light",
+			drawtype = "nodebox",
+			node_box = {
+				type = "fixed",
+				fixed = {
+					{-8/16, -8/16, -8/16, 8/16, -7/16, 8/16},
+				},
+			},
+		})
 	if craft_color_group then
-		-- Crafting from dye and white wool
+	-- Crafting from dye and white wool
 		minetest.register_craft({
 			type = "shapeless",
 			output = 'wool:'..name,
 			recipe = {'group:dye,'..craft_color_group, 'group:wool'},
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = 'wool:'..name..'_carpet 3',
+			recipe = {'wool:'..name, 'wool:'..name},
 		})
 	end
 end
