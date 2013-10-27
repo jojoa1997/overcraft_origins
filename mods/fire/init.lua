@@ -5,7 +5,7 @@ minetest.register_node("fire:basic_flame", {
 	drawtype = "plantlike",
 	tiles = {{
 		name="fire_basic_flame_animated.png",
-		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1},
+		animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=1},
 	}},
 	inventory_image = "fire_basic_flame.png",
 	light_source = 14,

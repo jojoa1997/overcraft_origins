@@ -31,11 +31,19 @@ minetest.register_entity(":__builtin:item", {
 		end
 		prop = {
 			is_visible = true,
-			textures = {itemname},
-			visual = "wielditem",
-			visual_size = {x=0.20, y=0.20},
-			automatic_rotate = math.pi * 0.25,
+			visual = "sprite",
+			textures = {"unknown_item.png"}
 		}
+		if item_texture and item_texture ~= "" then
+			prop.visual = "sprite"
+			prop.textures = {item_texture}
+			prop.visual_size = {x=0.50, y=0.50}
+		else
+			prop.visual = "wielditem"
+			prop.textures = {itemname}
+			prop.visual_size = {x=0.20, y=0.20}
+			prop.automatic_rotate = math.pi * 0.25
+		end
 		self.object:set_properties(prop)
 	end,
 
@@ -70,7 +78,7 @@ minetest.register_entity(":__builtin:item", {
 	end,
 	
 	on_step = function(self, dtime)
-		local time = minetest.setting_get("remove_items")
+		local time = tonumber(minetest.setting_get("remove_items"))
 		if not time then
 			time = 300
 		end
@@ -163,7 +171,11 @@ minetest.register_entity(":__builtin:item", {
 
 	on_punch = function(self, hitter)
 		if self.itemstring ~= '' then
-			hitter:get_inventory():add_item("main", self.itemstring)
+			local left = hitter:get_inventory():add_item("main", self.itemstring)
+			if not left:is_empty() then
+				self.itemstring = left:to_string()
+				return
+			end
 		end
 		self.object:remove()
 	end,

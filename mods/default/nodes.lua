@@ -489,12 +489,12 @@ minetest.register_node("default:water_flowing", {
 		{
 			image="default_water_flowing_animated.png",
 			backface_culling=false,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+			animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=0.8}
 		},
 		{
 			image="default_water_flowing_animated.png",
 			backface_culling=true,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.8}
+			animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=0.8}
 		},
 	},
 	alpha = WATER_ALPHA,
@@ -526,7 +526,7 @@ minetest.register_node("default:water_source", {
 		-- New-style water source material (mostly unused)
 		{
 			name="default_water_source_animated.png",
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0},
+			animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=2.0},
 			backface_culling = false,
 		}
 	},
@@ -557,12 +557,12 @@ minetest.register_node("default:lava_flowing", {
 		{
 			image="default_lava_flowing_animated.png",
 			backface_culling=false,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+			animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=3.3}
 		},
 		{
 			image="default_lava_flowing_animated.png",
 			backface_culling=true,
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.3}
+			animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=3.3}
 		},
 	},
 	paramtype = "light",
@@ -595,7 +595,7 @@ minetest.register_node("default:lava_source", {
 		-- New-style lava source material (mostly unused)
 		{
 			name="default_lava_source_animated.png",
-			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0},
+			animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=3.0},
 			backface_culling = false,
 		}
 	},
