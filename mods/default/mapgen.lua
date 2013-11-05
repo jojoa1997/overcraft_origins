@@ -69,7 +69,7 @@ minetest.register_ore({
 --
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:iron",
+	ore            = "default:stone_with_iron",
 	wherein        = "default:stone",
 	clust_scarcity = 830,
 	clust_num_ores = 5,
@@ -79,7 +79,7 @@ minetest.register_ore({
 })
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:iron",
+	ore            = "default:steone_with_iron",
 	wherein        = "default:stone",
 	clust_scarcity = 1660,
 	clust_num_ores = 3,
@@ -93,7 +93,7 @@ minetest.register_ore({
 --
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:gold",
+	ore            = "default:stone_with_gold",
 	wherein        = "default:stone",
 	clust_scarcity = 5000,
 	clust_num_ores = 5,
@@ -103,7 +103,7 @@ minetest.register_ore({
 })
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:gold",
+	ore            = "default:stone_with_gold",
 	wherein        = "default:stone",
 	clust_scarcity = 10000,
 	clust_num_ores = 3,
