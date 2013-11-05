@@ -79,7 +79,7 @@ minetest.register_ore({
 })
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:steone_with_iron",
+	ore            = "default:stone_with_iron",
 	wherein        = "default:stone",
 	clust_scarcity = 1660,
 	clust_num_ores = 3,
