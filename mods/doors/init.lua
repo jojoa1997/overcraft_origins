@@ -360,7 +360,6 @@ end
 
 minetest.register_node("doors:trapdoor", {
 	description = "Trapdoor",
-	inventory_image = "door_trapdoor.png",
 	drawtype = "nodebox",
 	tiles = {"door_trapdoor.png", "door_trapdoor.png",  "default_wood.png",  "default_wood.png", "default_wood.png", "default_wood.png"},
 	paramtype = "light",

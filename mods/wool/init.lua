@@ -40,6 +40,7 @@ for _, row in ipairs(wool.dyes) do
 		minetest.register_node("wool:"..name.."_carpet", {
 			description = desc.." Carpet",
 			tiles = {"wool_"..name..".png"},
+			wield_image = "wool_"..name..".png",
 			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,carpet=1},
 			sounds = default.node_sound_defaults(),
 			paramtype = "light",

@@ -1223,25 +1223,6 @@ minetest.register_node("default:obsidian", {
 	groups = {cracky=1,level=2},
 })
 
-minetest.register_node("default:nyancat", {
-	description = "Nyan Cat",
-	tiles = {"default_nc_side.png", "default_nc_side.png", "default_nc_side.png",
-		"default_nc_side.png", "default_nc_back.png", "default_nc_front.png"},
-	paramtype2 = "facedir",
-	stack_max = 64,
-	groups = {cracky=2},
-	legacy_facedir_simple = true,
-	sounds = default.node_sound_defaults(),
-})
-
-minetest.register_node("default:nyancat_rainbow", {
-	description = "Nyan Cat Rainbow",
-	tiles = {"default_nc_rb.png"},
-	stack_max = 64,
-	groups = {cracky=2},
-	sounds = default.node_sound_defaults(),
-})
-
 minetest.register_node("default:sapling", {
 	description = "Sapling",
 	drawtype = "plantlike",
@@ -1316,99 +1297,17 @@ minetest.register_node("default:dry_shrub", {
 	},
 })
 
-minetest.register_node("default:grass_1", {
+minetest.register_node("default:grass", {
 	description = "Grass",
 	drawtype = "plantlike",
-	tiles = {"default_grass_1.png"},
-	-- use a bigger inventory image
-	inventory_image = "default_grass_3.png",
-	wield_image = "default_grass_3.png",
+	tiles = {"default_tallgrass.png"},
+	inventory_image = "default_tallgrass.png",
+	wield_image = "default_tallgrass.png",
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	stack_max = 64,
+	is_ground_content = true,
 	groups = {snappy=3,flammable=3,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-	on_place = function(itemstack, placer, pointed_thing)
-		-- place a random grass node
-		local stack = ItemStack("default:grass_"..math.random(1,5))
-		local ret = minetest.item_place(stack, placer, pointed_thing)
-		return ItemStack("default:grass_1 "..itemstack:get_count()-(1-ret:get_count()))
-	end,
-})
-
-minetest.register_node("default:grass_2", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_2.png"},
-	inventory_image = "default_grass_2.png",
-	wield_image = "default_grass_2.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "default:grass_1",
-	groups = {snappy=3,flammable=3,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-minetest.register_node("default:grass_3", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_3.png"},
-	inventory_image = "default_grass_3.png",
-	wield_image = "default_grass_3.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "default:grass_1",
-	groups = {snappy=3,flammable=3,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("default:grass_4", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_4.png"},
-	inventory_image = "default_grass_4.png",
-	wield_image = "default_grass_4.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "default:grass_1",
-	groups = {snappy=3,flammable=3,attached_node=1,not_in_creative_inventory=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
-
-minetest.register_node("default:grass_5", {
-	description = "Grass",
-	drawtype = "plantlike",
-	tiles = {"default_grass_5.png"},
-	inventory_image = "default_grass_5.png",
-	wield_image = "default_grass_5.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = true,
-	drop = "default:grass_1",
-	groups = {snappy=3,flammable=3,attached_node=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",

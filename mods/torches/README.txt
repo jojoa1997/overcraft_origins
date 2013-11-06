@@ -2,7 +2,7 @@ Minetest mod "Torches"
 =======================
 version: 1.1
 
-License of source code and textures: WTFPL
+License of source code: WTFPL
 -----------------------------------------
 (c) Copyright BlockMen (2013)
 

@@ -10,7 +10,7 @@ Registered items that
 - do not have the group not_in_creative_inventory
 are added to the creative inventory.
 
-License of source code and media files:
+License of source code:
 ---------------------------------------
 Copyright (C) 2012 Perttu Ahola (celeron55) <celeron55@gmail.com>
 

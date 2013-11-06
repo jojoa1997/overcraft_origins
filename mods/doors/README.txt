@@ -13,21 +13,6 @@ and/or modify it under the terms of the Do What The Fuck You Want
 To Public License, Version 2, as published by Sam Hocevar. See
 http://sam.zoy.org/wtfpl/COPYING for more details.
 
-License of textures
---------------------------------------
-following Textures created by Fernando Zapata (CC BY-SA 3.0):
-  door_wood.png
-  door_wood_a.png
-  door_wood_a_r.png
-  door_wood_b.png
-  door_wood_b_r.png
-
-following Textures created by BlockMen (WTFPL):
-  door_glass.png
-  door_trapdoor.png
-
-All other textures (created by PilzAdam): WTFPL
-
 
 License of sounds
 --------------------------------------

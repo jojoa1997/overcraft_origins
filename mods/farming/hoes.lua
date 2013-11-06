@@ -24,7 +24,7 @@ end
 
 minetest.register_tool("farming:hoe_wood", {
 	description = "Wood Hoe",
-	inventory_image = "farming_hoe_wood.png",
+	inventory_image = "farming_tool_woodhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 0) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -46,7 +46,7 @@ minetest.register_craft({
 
 minetest.register_tool("farming:hoe_stone", {
 	description = "Stone Hoe",
-	inventory_image = "farming_hoe_stone.png",
+	inventory_image = "farming_tool_stonehoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 5) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -68,7 +68,7 @@ minetest.register_craft({
 
 minetest.register_tool("farming:hoe_steel", {
 	description = "Steel Hoe",
-	inventory_image = "farming_hoe_steel.png",
+	inventory_image = "farming_tool_steelhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 10) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -90,7 +90,7 @@ minetest.register_craft({
 
 minetest.register_tool("farming:hoe_gold", {
 	description = "Gold Hoe",
-	inventory_image = "farming_hoe_gold.png",
+	inventory_image = "farming_tool_goldhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 7) then
 			if not minetest.setting_getbool("creative_mode") then
@@ -112,7 +112,7 @@ minetest.register_craft({
 
 minetest.register_tool("farming:hoe_diamond", {
 	description = "Diamond Hoe",
-	inventory_image = "farming_hoe_diamond.png",
+	inventory_image = "farming_tool_diamondhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		if create_soil(pointed_thing.under, user:get_inventory(), 15) then
 			if not minetest.setting_getbool("creative_mode") then

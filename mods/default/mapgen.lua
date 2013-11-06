@@ -489,7 +489,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							
 						-- If dirt with grass, add grass
 						elseif nn == "default:dirt_with_grass" then
-							minetest.env:set_node(p,{name="default:grass_"..pr:next(1, 5)})
+							minetest.env:set_node(p,{name="default:grass"})
 						end
 					end
 				end

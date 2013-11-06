@@ -13,7 +13,7 @@ the Free Software Foundation; either version 2 of the License, or
 
 http://www.gnu.org/licenses/lgpl-2.1.html
 
-License of media (textures and sounds)
+License of media (sounds)
 --------------------------------------
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)                                 
 http://creativecommons.org/licenses/by-sa/3.0/

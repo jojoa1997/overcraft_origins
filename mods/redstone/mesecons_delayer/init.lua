@@ -96,7 +96,6 @@ minetest.register_node("mesecons_delayer:delayer_off_"..tostring(i), {
 		"mesecons_delayer_sides_off.png",
 		"mesecons_delayer_sides_off.png"
 		},
-	inventory_image = "mesecons_delayer_off.png",
 	wield_image = "mesecons_delayer_off.png",
 	walkable = true,
 	selection_box = {

@@ -33,13 +33,3 @@ the Free Software Foundation; either version 2.1 of the License, or
 (at your option) any later version.
 
 http://www.gnu.org/licenses/lgpl-2.1.html
-
-License of media (textures and sounds)
---------------------------------------
-WTFPL
-
-Authors of media files
------------------------
-Unless specifically noted,
-Copyright (C) 2012 Vanessa Ezekowitz
-

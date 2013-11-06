@@ -7,10 +7,6 @@ flower_tmp={}
 dofile(minetest.get_modpath("flowers").."/mapgen.lua")
 dofile(minetest.get_modpath("flowers").."/func.lua")
 
--- Aliases for original flowers mod
-minetest.register_alias("flowers:flower_rose", "flowers:rose")
-minetest.register_alias("flowers:flower_tulip", "flowers:tulip")
-
 minetest.register_node("flowers:rose", {
 	description = "Rose",
 	drawtype = "plantlike",

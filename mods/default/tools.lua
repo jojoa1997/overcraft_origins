@@ -5,21 +5,43 @@
 --
 
 -- The hand
-minetest.register_item(":", {
-	type = "none",
-	wield_image = "wieldhand.png",
-	wield_scale = {x=1,y=1,z=2.5},
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level = 0,
-		groupcaps = {
-			crumbly = {times={[2]=3.00, [3]=0.70}, uses=0, maxlevel=1},
-			snappy = {times={[3]=0.40}, uses=0, maxlevel=1},
-			oddly_breakable_by_hand = {times={[1]=7.00,[2]=4.00,[3]=1.40}, uses=0, maxlevel=3}
-		},
-		damage_groups = {fleshy=1},
-	}
-})
+if minetest.setting_getbool("creative_mode") then
+    minetest.register_item(":", {
+        type = "none",
+        wield_image = "wieldhand.png",
+        wield_scale = {x=1,y=1,z=2.5},
+        tool_capabilities = {
+            full_punch_interval = 0.9,
+            max_drop_level = 3,
+            groupcaps = {
+                crumbly = {times={[1]=0, [2]=0, [3]=0}, uses=0, maxlevel=3},
+                cracky = {times={[1]=0, [2]=0, [3]=0}, uses=0, maxlevel=3},
+                snappy = {times={[1]=0, [2]=0, [3]=0}, uses=0, maxlevel=3},
+                choppy = {times={[1]=0, [2]=0, [3]=0}, uses=0, maxlevel=3},
+                oddly_breakable_by_hand = {times={[1]=0, [2]=0, [3]=0}, uses=0, maxlevel=3},
+            }
+        }
+    })
+    minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
+            return true
+    end)
+else
+	minetest.register_item(":", {
+		type = "none",
+		wield_image = "wieldhand.png",
+		wield_scale = {x=1,y=1,z=2.5},
+		tool_capabilities = {
+			full_punch_interval = 0.9,
+			max_drop_level = 0,
+			groupcaps = {
+				crumbly = {times={[2]=3.00, [3]=0.70}, uses=0, maxlevel=1},
+				snappy = {times={[3]=0.40}, uses=0, maxlevel=1},
+				oddly_breakable_by_hand = {times={[1]=7.00,[2]=4.00,[3]=1.40}, uses=0, maxlevel=3}
+			},
+			damage_groups = {fleshy=1},
+		}
+	})
+end
 
 -- Picks
 minetest.register_tool("default:pick_wood", {
