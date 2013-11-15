@@ -3,23 +3,10 @@ Minetest 0.4 mod: vessels
 
 Crafts
 -------
-Glass bottle (yields 10)
+Glass bottle (yields 4)
 
-   G - G
    G - G
    - G -
-
-Drinking Glass (yields 14)
-
-   G - G
-   G - G
-   G G G
-
-Heavy Steel Bottle (yields 5)
-
-   S - S
-   S - S
-   - S -
 
 License of source code:
 -----------------------

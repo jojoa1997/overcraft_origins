@@ -16,7 +16,6 @@ minetest.register_node("flowers:rose", {
 	sunlight_propagates = true,
 	paramtype = "light",
 	walkable = false,
-	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_red=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -34,7 +33,6 @@ minetest.register_node("flowers:dandelion_yellow", {
 	sunlight_propagates = true,
 	paramtype = "light",
 	walkable = false,
-	buildable_to = true,
 	groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_yellow=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
