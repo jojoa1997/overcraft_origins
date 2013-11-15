@@ -96,7 +96,7 @@ minetest.register_craftitem("farming:bread", {
 	description = "Bread",
 	inventory_image = "farming_bread.png",
 	groups = {food=2},
-	on_use = minetest.item_eat(6)
+	on_use = minetest.item_eat(5)
 })
 
 minetest.register_alias("farming:corn_seed", "farming:wheat_seed")

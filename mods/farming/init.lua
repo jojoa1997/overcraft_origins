@@ -202,6 +202,9 @@ dofile(minetest.get_modpath("farming").."/carrots.lua")
 -- ========= POTATOES =========
 dofile(minetest.get_modpath("farming").."/potatoes.lua")
 
+-- ========= MUSHROOMS =========
+dofile(minetest.get_modpath("farming").."/mushrooms.lua")
+
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "farming loaded")
