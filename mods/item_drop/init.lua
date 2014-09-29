@@ -2,7 +2,7 @@ minetest.register_globalstep(function(dtime)
 	for _,player in ipairs(minetest.get_connected_players()) do
 		if player:get_hp() > 0 or not minetest.setting_getbool("enable_damage") then
 			local pos = player:getpos()
-			pos.y = pos.y+0.7
+			pos.y = pos.y + 0.1
 			local inv = player:get_inventory()
 			
 			for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 0.7)) do

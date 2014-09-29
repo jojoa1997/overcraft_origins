@@ -1,3 +1,4 @@
+ARMOR_MOD_NAME = minetest.get_current_modname()
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/armor.lua")
 
 -- Regisiter Head Armor

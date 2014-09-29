@@ -134,7 +134,7 @@ playerdata = load_player_data()
 		pagemax = math.floor((inventory.inventory_size-1) / (9*4) + 1)
 		CREATIVE_SEARCH_ITEMS = "invsize[11,9.5;]"..
 			"button[9.5,0;1.5,1.5;creative_search;Search]"..
-			"list[current_player;main;0.5,7;9,1;]"..
+			"list[current_player;main;0.5,6.74;9,1;]"..
 			"list[detached:creative;main;0.5,2.5;9,4;"..tostring(start_i).."]"..
 			"label[7.25,1.7;"..tostring(pagenum).."/"..tostring(pagemax).."]"..
 			"button[5.5,1.5;1.5,1;creative_prev;<<]"..

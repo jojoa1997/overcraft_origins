@@ -1,4 +1,4 @@
-
+--[[
 uniskins = {
 	skin = {},
 	armor = {},
@@ -44,4 +44,4 @@ minetest.register_on_joinplayer(function(player)
 		end
 	end
 end)
-
+]]
